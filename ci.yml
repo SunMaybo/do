@@ -1,0 +1,13 @@
+work_dir: dotconnect_service
+version: V1.3.9
+server:
+    api-authorize:
+          name: api-authorize
+          env: uat
+          port: 9004
+          user: java
+          password: javaoffice2015
+          exec: -Xmx512m
+          ssh_port: 22
+          hosts:
+            - 127.0.0.1
