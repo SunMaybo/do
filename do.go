@@ -462,8 +462,6 @@ func Kill(workDir string, user string, module string, projectPort int, sshClient
 	session.Close()
 }
 func ProjectPush(workDir string, host string, port int, password string, user string, fileName string, env string, version string, module string) {
-	//初始化加载目录
-	LoadShell(workDir, host, port, password, user)
 	var ipAddress = host + ":" + strconv.Itoa(port)
 	sshClient := SshShellClient(ipAddress, user, password)
 	session := SshShellSession(sshClient)
@@ -471,6 +469,8 @@ func ProjectPush(workDir string, host string, port int, password string, user st
 	var cmd = "mkdir -p " + remoteDir
 	sshExecute(cmd, session)
 	session.Close()
+	//初始化加载目录
+	LoadShell(workDir, host, port, password, user)
 	//上传文件
 	sftpClient, error := SshSessionFtp(sshClient)
 	Check(error, "create sftp error")
